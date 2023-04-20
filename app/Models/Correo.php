@@ -52,9 +52,12 @@ class Correo extends Model
 
     public function enviarEmail(){
 
+      $adjunto=Adjunto::find($this->id);
+
       $details=[
         'asunto' => $this->asunto,
-        'contenido' => $this->texto
+        'contenido' => $this->texto,
+        'adjunto' => $adjunto,
       ];
 
       $remitente=Remitente::find($this->id_remitente);

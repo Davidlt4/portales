@@ -91,11 +91,12 @@ class ApiController extends Controller
         $correo->cco=$request->cco ?? '';
         $correo->texto=$request->texto ?? '';
         $correo->asunto=$request->asunto ?? '';
-        $correo->enviado=$request->enviado ?? 1;
+        $correo->enviado=$request->enviado ?? 0;
         $correo->status=$request->status ?? 200; 
         $correo->mensaje=$request->mensaje ?? '';
 
         $correo->save();
+        $correo->enviarEmail();
 
         if(isset($request->adjunto)){
             $adjunto=new Adjunto();

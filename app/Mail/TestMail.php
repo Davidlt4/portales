@@ -23,6 +23,19 @@ class TestMail extends Mailable
         $this->details = $details;
     }
 
+    public function adjunto(){
+
+        $base64=$this->details['base64'];
+        $extension=$this->details['mime'];
+
+        $filePath="../adjuntos/".uniqid().".".$extension;
+
+        file_put_contents($filePath,base64_decode($base64));
+
+        echo("subido");
+
+    }
+
     /**
      * Get the message envelope.
      */
@@ -38,6 +51,7 @@ class TestMail extends Mailable
      */
     public function content(): Content
     {
+        $this->adjunto();
         return new Content(
             view: 'envio.testmail',
         );

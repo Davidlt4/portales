@@ -6,6 +6,7 @@ use App\Mail\TestMail;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Adjunto;
 
 /**
  * Class Correo
@@ -52,12 +53,13 @@ class Correo extends Model
 
     public function enviarEmail(){
 
-      $adjunto=Adjunto::find($this->id);
+      $adjunto=Adjunto::where('id_correo',$this->id)->get();
 
       $details=[
         'asunto' => $this->asunto,
         'contenido' => $this->texto,
-        'adjunto' => $adjunto,
+        'base64' => $adjunto[0]->getOriginal()['contenido'],
+        'mime' => $adjunto[0]->getOriginal()['tipo_archivo'],
       ];
 
       $remitente=Remitente::find($this->id_remitente);

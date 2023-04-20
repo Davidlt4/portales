@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('destinatarios');
             $table->string('cc');
             $table->string('cco');
-            $table->string('texto');
+            $table->longText('texto');
             $table->string('asunto');
             $table->boolean('enviado');
             $table->integer('status');

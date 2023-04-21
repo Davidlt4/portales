@@ -74,8 +74,6 @@ class Correo extends Model
 
       $this->enviado=1;
 
-      return "Correo enviado";
-
     }
 
 

@@ -52,7 +52,6 @@ class TestMail extends Mailable
      */
     public function content(): Content
     {
-        $this->adjunto();
         return new Content(
             view: 'envio.testmail',
         );

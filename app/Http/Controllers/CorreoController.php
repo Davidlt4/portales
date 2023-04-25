@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Correo;
 use App\Models\Parametro;
+use DateTime;
 use Illuminate\Http\Request;
 
 /**
@@ -109,31 +110,50 @@ class CorreoController extends Controller
     }
 
     public static function enviar(){
-        
+
         $params=Parametro::find(1);
-        $correos=Correo::where("enviado",0)->get();
 
-        if(count($correos)<=$params->lote){
-            foreach($correos as $correo){
+        $ult=new DateTime($params->ultimo);
+        $hoy=new DateTime("now");
 
-                $id=$correo[0]->getOriginal()['id'];
-                dd($id);
-                $correo=Correo::find($id);
-                // dd($correo->id);
-                $correo->enviarEmail();
-                $correo->enviado=1;
-                $correo->update();
+        $diff=$hoy->diff($ult);
+        $minutos=(($diff->d * 24 ) * 60 ) + ($diff->h*60) + ( $diff->i);
+    
+
+        if($minutos>=$params->min){
+
+            $correos=Correo::where("enviado",0)->get();
+            // dd($correos);
+
+            if(count($correos)<=$params->lote){
+
+                foreach($correos as $correo){
+                    $id=$correo->getOriginal()['id'];
+                    // dd($id);
+                    $correo=Correo::find($id);
+                    // dd($correo->id);
+                    $correo->enviarEmail();
+                    $correo->enviado=1;
+                    $params->ultimo=new DateTime("now");
+                    $correo->update();
+                    $params->update();
+                }
+
+            }else{
+
+                for($i=0;$i<$params->lote;$i++){
+                    $id=$correos[$i]->getOriginal()['id'];
+                    // dd($id);
+                    $correo=Correo::find($id);
+                    // dd($correo->id);
+                    $correo->enviarEmail();
+                    $correo->enviado=1;
+                    $params->ultimo=new DateTime("now");
+                    $correo->update();
+                    $params->update();
+                }
+
             }
-        }else{
-
         }
-
-        // $id=Correo::where("enviado",0)->get()[0]->getOriginal()['id'];
-
-        // $correo=Correo::find($id);
-        // // dd($correo->id);
-        // $correo->enviarEmail();
-        // $correo->enviado=1;
-        // $correo->update();
     }
 }

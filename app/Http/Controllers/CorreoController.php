@@ -110,22 +110,23 @@ class CorreoController extends Controller
     public static function enviar(){
 
         $datos=Correo::where("enviado",0)->get()[0]->getOriginal();
-            $correo=new Correo();
-        
-            $correo->id=$datos['id'];
-            $correo->id_remitente=$datos['id_remitente'];
-            $correo->destinatarios=$datos['destinatarios'];
-            $correo->cc=$datos['cc'];
-            $correo->cco=$datos['cco'];
-            $correo->texto=$datos['texto'];
-            $correo->asunto=$datos['asunto'];
-            $correo->enviado=$datos['enviado'];
-            $correo->status=$datos['status'];
-            $correo->mensaje=$datos['mensaje'];
-            $correo->activo=$datos['activo'];
+
+        $correo=new Correo();
+    
+        $correo->id=$datos['id'];
+        $correo->id_remitente=$datos['id_remitente'];
+        $correo->destinatarios=$datos['destinatarios'];
+        $correo->cc=$datos['cc'];
+        $correo->cco=$datos['cco'];
+        $correo->texto=$datos['texto'];
+        $correo->asunto=$datos['asunto'];
+        $correo->enviado=$datos['enviado'];
+        $correo->status=$datos['status'];
+        $correo->mensaje=$datos['mensaje'];
+        $correo->activo=$datos['activo'];
 
 
-            // dd($correo->id);
-            $correo->enviarEmail();
+        // dd($correo->id);
+        $correo->enviarEmail();
     }
 }

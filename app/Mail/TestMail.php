@@ -29,7 +29,7 @@ class TestMail extends Mailable
         $base64=$this->details['base64'];
         $extension=$this->details['mime'];
 
-        $filePath="../adjuntos/".uniqid().".".$extension;
+        $filePath="adjuntos/".uniqid().".".$extension;
 
         file_put_contents($filePath,base64_decode($base64));
 

@@ -37,6 +37,10 @@ class TestMail extends Mailable
 
     }
 
+    //buscar las citas por fecha de cita
+    //cambiar el estado de la cita
+    //listado de estado de la cita
+
     /**
      * Get the message envelope.
      */

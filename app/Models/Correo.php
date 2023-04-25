@@ -64,6 +64,13 @@ class Correo extends Model
 
       $remitente=Remitente::find($this->id_remitente);
 
+      // $files = glob('../../adjuntos/*');
+
+      // foreach($files as $file){
+      //     if(is_file($file))
+      //     unlink($file);
+      // }
+
       Config::set('mail.mailers.smtp.encryption',$remitente->encriptacion);
       // Config::set('mail.mailers.smtp.port',$remitente->puerto);
       Config::set('mail.mailers.smtp.username',$remitente->cuenta);
@@ -73,6 +80,9 @@ class Correo extends Model
       Mail::to($this->destinatarios)->send(new TestMail($details));
 
       $this->enviado=1;
+      $this->update();
+
+      // dd($this::where('enviado',0));
 
     }
 

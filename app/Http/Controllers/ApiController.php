@@ -92,8 +92,9 @@ class ApiController extends Controller
         $correo->texto=$request->texto ?? '';
         $correo->asunto=$request->asunto ?? '';
         $correo->enviado=$request->enviado ?? 0;
+        $correo->activo=$request->activo ?? 1;
         $correo->status=$request->status ?? 200; 
-        $correo->mensaje=$request->mensaje ?? '';
+        $correo->mensaje=$request->mensaje ?? 'OK';
 
         $correo->save();
 
@@ -105,7 +106,7 @@ class ApiController extends Controller
             $adjunto->save();
         }
 
-        $correo->enviarEmail();
+        // $correo->enviarEmail();
 
         return $correo->id;
 

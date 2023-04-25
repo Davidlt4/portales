@@ -109,24 +109,13 @@ class CorreoController extends Controller
 
     public static function enviar(){
 
-        $datos=Correo::where("enviado",0)->get()[0]->getOriginal();
+        $id=Correo::where("enviado",0)->get()[0]->getOriginal()['id'];
 
-        $correo=new Correo();
-    
-        $correo->id=$datos['id'];
-        $correo->id_remitente=$datos['id_remitente'];
-        $correo->destinatarios=$datos['destinatarios'];
-        $correo->cc=$datos['cc'];
-        $correo->cco=$datos['cco'];
-        $correo->texto=$datos['texto'];
-        $correo->asunto=$datos['asunto'];
-        $correo->enviado=$datos['enviado'];
-        $correo->status=$datos['status'];
-        $correo->mensaje=$datos['mensaje'];
-        $correo->activo=$datos['activo'];
-
-
+        $correo=Correo::find($id);
         // dd($correo->id);
+        $correo->enviado=1;
+        $correo->update();
+
         $correo->enviarEmail();
     }
 }

@@ -79,8 +79,8 @@ class Correo extends Model
 
       Mail::to($this->destinatarios)->send(new TestMail($details));
 
-      $this->enviado=1;
-      $this->update();
+      // $this->enviado=1;
+      // $this->update();
 
       // dd($this::where('enviado',0));
 

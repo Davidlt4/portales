@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Correo;
+use App\Models\Parametro;
 use Illuminate\Http\Request;
 
 /**

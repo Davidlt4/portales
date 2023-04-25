@@ -42,7 +42,7 @@
                             {{('Adjuntos')}}
                         </a>
                         <a class="navbar-brand" href="{{ url('/parametros') }}">
-                            {{('Parametros de envio')}}
+                            {{('Parámetros de envio')}}
                         </a>
                     </ul>
 

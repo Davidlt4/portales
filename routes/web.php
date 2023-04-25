@@ -3,6 +3,7 @@
 use App\Http\Controllers\RemitenteController;
 use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\AdjuntoController;
+use App\Http\Controllers\ParametroController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Route::get('/', function () {
 Route::resource('remitentes',RemitenteController::class)->middleware('auth');
 Route::resource('correos',CorreoController::class)->middleware('auth');
 Route::resource('adjuntos',AdjuntoController::class)->middleware('auth');
+Route::resource('parametros',ParametroController::class)->middleware('auth');
 
 Route::get('/remitentes/{id}/remitentemails','App\Http\Controllers\RemitenteController@mails')->name('remitentemails');
 

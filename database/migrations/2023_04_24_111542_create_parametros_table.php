@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('parametros', function (Blueprint $table) {
             $table->id();
-            $table->integer('numLote');
-            $table->integer('timLote');
-            $table->timestamp('ultMod');
-            $table->timestamps();
+            $table->integer('lote');
+            $table->integer('min');
+            $table->timestamp('ultimo');
         });
     }
 

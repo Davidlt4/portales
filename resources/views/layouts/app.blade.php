@@ -41,6 +41,9 @@
                         <a class="navbar-brand" href="{{ url('/adjuntos') }}">
                             {{('Adjuntos')}}
                         </a>
+                        <a class="navbar-brand" href="{{ url('/parametros') }}">
+                            {{('Parametros de envio')}}
+                        </a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -109,14 +109,31 @@ class CorreoController extends Controller
     }
 
     public static function enviar(){
+        
+        $params=Parametro::find(1);
+        $correos=Correo::where("enviado",0)->get();
 
-        $id=Correo::where("enviado",0)->get()[0]->getOriginal()['id'];
+        if(count($correos)<=$params->lote){
+            foreach($correos as $correo){
 
-        $correo=Correo::find($id);
-        // dd($correo->id);
-        $correo->enviado=1;
-        $correo->update();
+                $id=$correo[0]->getOriginal()['id'];
+                dd($id);
+                $correo=Correo::find($id);
+                // dd($correo->id);
+                $correo->enviarEmail();
+                $correo->enviado=1;
+                $correo->update();
+            }
+        }else{
 
-        $correo->enviarEmail();
+        }
+
+        // $id=Correo::where("enviado",0)->get()[0]->getOriginal()['id'];
+
+        // $correo=Correo::find($id);
+        // // dd($correo->id);
+        // $correo->enviarEmail();
+        // $correo->enviado=1;
+        // $correo->update();
     }
 }

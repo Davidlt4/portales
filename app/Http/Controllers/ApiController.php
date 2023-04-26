@@ -91,6 +91,7 @@ class ApiController extends Controller
         $correo->cco=$request->cco ?? '';
         $correo->texto=$request->texto ?? '';
         $correo->asunto=$request->asunto ?? '';
+        $correo->token=$request->token ?? '';
         $correo->enviado=$request->enviado ?? 0;
         $correo->activo=$request->activo ?? 1;
         $correo->status=$request->status ?? 200; 
@@ -105,6 +106,8 @@ class ApiController extends Controller
             $adjunto->tipo_archivo=$request->tipo_archivo;
             $adjunto->save();
         }
+
+        $correo->generarToken();
 
         // $correo->enviarEmail();
 

@@ -7,6 +7,7 @@
     <title>Naturalsoft mail</title>
 </head>
 <body>
+    <img src="http://portales.test/evento/{{$details['token']}}">
     <p>{{$details['contenido']}}</p>
 </body>
 </html>

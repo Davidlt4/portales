@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Adjunto;
+use App\Models\Eventos;
+use DateTime;
 
 /**
  * Class Correo
@@ -54,10 +56,12 @@ class Correo extends Model
     public function enviarEmail(){
 
       $adjunto=Adjunto::where('id_correo',$this->id)->get();
+      // dd($adjunto);
 
       $details=[
         'asunto' => $this->asunto,
         'contenido' => $this->texto,
+        'token'=>$this->token,
         'base64' => $adjunto[0]->getOriginal()['contenido'],
         'mime' => $adjunto[0]->getOriginal()['tipo_archivo'],
       ];
@@ -83,6 +87,36 @@ class Correo extends Model
       // $this->update();
 
       // dd($this::where('enviado',0));
+
+    }
+
+    public function generarToken(){
+
+      $slug="";
+      $codeAlphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      $encontrado=false;
+      $evento=new Evento();
+
+
+      do{
+        for($i=0;$i<32;$i++){
+          $n=mt_rand(0,(strlen($codeAlphabet) - 1));
+          $slug .= substr($codeAlphabet, $n, 1);
+        }
+        $buscaOtro = Evento::where('token', '=', $slug)->get();
+        if(count($buscaOtro)>0) $encontrado=true;
+
+      }while($encontrado);
+
+      $this->token=$slug;
+
+      $evento->id_correo=$this->id;
+      $evento->token=$slug;
+      $evento->abierto=null;
+      $evento->encabezado='';
+
+      $evento->save();
+      $this->save();
 
     }
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\RemitenteController;
 use App\Http\Controllers\CorreoController;
 use App\Http\Controllers\AdjuntoController;
 use App\Http\Controllers\ParametroController;
+use App\Http\Controllers\EventoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,9 @@ Route::resource('adjuntos',AdjuntoController::class)->middleware('auth');
 Route::resource('parametros',ParametroController::class)->middleware('auth');
 
 Route::get('/remitentes/{id}/remitentemails','App\Http\Controllers\RemitenteController@mails')->name('remitentemails');
+
+// Route::get('/evento/{token}','App\Http\Controllers\EventoController@eventoAbierto')->name('eventoAbierto');
+
 
 Auth::routes();
 

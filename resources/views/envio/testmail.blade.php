@@ -7,7 +7,7 @@
     <title>Naturalsoft mail</title>
 </head>
 <body>
-    <img src="http://portales.test/evento/{{$details['token']}}">
+    <img src="https://mailer.portalns.es:9000/evento/{{$details['token']}}">
     <p>{{$details['contenido']}}</p>
 </body>
 </html>

@@ -30,7 +30,7 @@ Route::resource('parametros',ParametroController::class)->middleware('auth');
 
 Route::get('/remitentes/{id}/remitentemails','App\Http\Controllers\RemitenteController@mails')->name('remitentemails');
 
-// Route::get('/evento/{token}','App\Http\Controllers\EventoController@eventoAbierto')->name('eventoAbierto');
+Route::get('/evento/{token}','App\Http\Controllers\EventoController@eventoAbierto')->name('eventoAbierto');
 
 
 Auth::routes();

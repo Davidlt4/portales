@@ -156,4 +156,14 @@ class CorreoController extends Controller
             }
         }
     }
+
+    public static function limpiar(){
+        $files = glob('adjuntos/*'); // get all file names
+        // dd($files);
+        foreach($files as $file){ // iterate files
+            if(is_file($file)) {
+                unlink($file); // delete file
+            }
+        }
+    }
 }

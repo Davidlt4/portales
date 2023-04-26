@@ -28,5 +28,6 @@ class CorreoCommand extends Command
     {
         //
         CorreoController::enviar();
+        CorreoController::limpiar();
     }
 }

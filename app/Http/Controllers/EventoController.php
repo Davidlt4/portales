@@ -111,8 +111,9 @@ class EventoController extends Controller
     public function eventoAbierto($token){
         $evento=Evento::find($token);
         $evento->abierto=new DateTime();
-        $gifPath="/img/vacio.gif";
+        $gifPath="img/vacio.gif";
         $gif=file_get_contents($gifPath);
+        // dd($gif);
         return $gif;
     }
 }

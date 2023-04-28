@@ -7,7 +7,8 @@
     <title>Naturalsoft mail</title>
 </head>
 <body>
-    <img src="https://mailer.portalns.es:9000/evento/{{$details['token']}}">
+    <!--https://mailer.portalns.es:9000-->
+    <img src="{{route('eventoAbierto',$details['token'])}}">
     <p>{{$details['contenido']}}</p>
 </body>
 </html>
